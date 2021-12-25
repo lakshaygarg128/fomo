@@ -21,4 +21,9 @@
         android:name="com.example.fomo.LocationFragment"
         android:label="fragment_location"
         tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.fomo.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
