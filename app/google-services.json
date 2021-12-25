@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "632544746700",
+    "project_id": "fomo-6c92c",
+    "storage_bucket": "fomo-6c92c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632544746700:android:9e13b3c0ce750002d1b669",
+        "android_client_info": {
+          "package_name": "com.example.fomo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632544746700-smf18vit1mh26np3c53qabdo31as6cvb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD83DHCI2POdqQFKiE_6idccpsYx7ggm88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632544746700-smf18vit1mh26np3c53qabdo31as6cvb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
