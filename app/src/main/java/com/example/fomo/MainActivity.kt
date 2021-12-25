@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
       //  binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
        // replaceFragment(Mood())
-        var bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigatin_view)
+        var bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavView)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.menu_profile -> replaceFragment(ProfileFragment())
-                R.id.weather -> replaceFragment(WeatherFragment())
+                R.id.weather_menu -> replaceFragment(WeatherFragment())
                 R.id.menu_mood -> replaceFragment(Mood())
                 R.id.menu_location-> replaceFragment(LocationFragment())
             }
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment) {
         if(fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.nav_fragment, fragment)
+            transaction.replace(R.id.fragmentContainer, fragment)
             transaction.commit()
         }
     }
