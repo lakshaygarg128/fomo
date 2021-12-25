@@ -1,59 +1,68 @@
 package com.example.fomo
 
+import android.app.Activity
+import android.app.DownloadManager
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
+import android.location.LocationRequest
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.getSystemService
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.Task
+import java.util.jar.Manifest
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LocationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+
 class LocationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var Permission_id = 100
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    lateinit var locationRequest: LocationRequest
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity as Activity)
+        RequestPermission()
+      CheckPermisssion()
         return inflater.inflate(R.layout.fragment_location, container, false)
     }
+    private fun CheckPermisssion(){
+        val task : Task<Location> = fusedLocationProviderClient.lastLocation
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LocationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LocationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        if(ActivityCompat.checkSelfPermission(activity as Context,android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+            || ActivityCompat.checkSelfPermission(activity as Context,android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        ){
+            task.addOnSuccessListener {
+                if(it!=null){
+                    Toast.makeText(activity as Context,"${it.latitude} ${it.longitude}",Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+        RequestPermission()
+        return
     }
+    private fun RequestPermission(){
+        ActivityCompat.requestPermissions(activity as Activity,
+            arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.ACCESS_FINE_LOCATION),Permission_id)
+    }
+//    private fun isLocationEnabled():Boolean{
+//        var locationManager = activity?.getSystemService(activity.LOCATION_SERVICE) as LocationManager
+//        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+//    }
+
 }
