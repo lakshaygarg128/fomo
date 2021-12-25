@@ -8,13 +8,19 @@ import android.view.View
 import com.airbnb.lottie.utils.Utils
 import com.example.fomo.databinding.ActivityLoginBinding
 import com.example.fomo.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
     lateinit var binding: ActivityLoginBinding
+    lateinit var email:String
+    lateinit var password: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.btnLogin.setOnClickListener(this)
+        binding.txtRegister.setOnClickListener(this)
+        binding.txtForgotPassword.setOnClickListener(this)
 
     }
 
@@ -27,22 +33,35 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 loginUser()
 
             }
+            binding.txtForgotPassword->{startActivity(Intent(this@LoginActivity,ForgotPassword::class.java))}
         }
     }
 
     private fun loginUser() {
         if(validateUser())
         {
-
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password).addOnCompleteListener {task->
+                if(task.isSuccessful)
+                {
+                    startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                    finish()
+                }
+                else
+                {
+                    displayErrorSnackbar(task.exception!!.message!!,true)
+                }
+            }
         }
     }
 
     private fun validateUser(): Boolean {
+        email=binding.etEmailId.text.toString().trim { it<=' ' }
+        password=binding.etPassword.text.toString().trim { it<=' ' }
         return when{
-            TextUtils.isEmpty(binding.etEmailId.text.toString().trim { it<=' ' })->{displayErrorSnackbar("Please Enter Valid Email Id",true)
+            TextUtils.isEmpty(email)->{displayErrorSnackbar("Please Enter Valid Email Id",true)
                 false
             }
-            TextUtils.isEmpty(binding.etPassword.text.toString().trim { it<=' ' })->{displayErrorSnackbar("Please Enter Password",true)
+            TextUtils.isEmpty(password)->{displayErrorSnackbar("Please Enter Password",true)
                 false
             }
             else-> true
