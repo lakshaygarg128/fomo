@@ -60,9 +60,5 @@ class LocationFragment : Fragment() {
         ActivityCompat.requestPermissions(activity as Activity,
             arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.ACCESS_FINE_LOCATION),Permission_id)
     }
-//    private fun isLocationEnabled():Boolean{
-//        var locationManager = activity?.getSystemService(activity.LOCATION_SERVICE) as LocationManager
-//        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-//    }
 
 }
