@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/mood">
 
+    <fragment
+        android:id="@+id/mood"
+        android:name="com.example.fomo.Mood"
+        android:label="fragment_mood"
+        tools:layout="@layout/fragment_mood" />
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.example.fomo.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" />
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.fomo.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
 </navigation>
