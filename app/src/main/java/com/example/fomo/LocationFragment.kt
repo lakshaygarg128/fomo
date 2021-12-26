@@ -127,4 +127,8 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
 
     }
 
+    override fun onOrderClicked(item: FoodItem) {
+        TODO("Not yet implemented")
+    }
+
 }

@@ -19,6 +19,9 @@ class FoodAdapter(val listener: onRecipeClicked ):RecyclerView.Adapter<FoodViewH
         viewholder.recipeButton.setOnClickListener{
             listener.onRecipeClicked(items[viewholder.position])
         }
+        viewholder.orderButton.setOnClickListener{
+            listener.onOrderClicked(items[viewholder.position])
+        }
         return viewholder
     }
 
@@ -45,8 +48,10 @@ class FoodViewHolder(itemview : View): RecyclerView.ViewHolder(itemview){
     val title_food : TextView = itemview.findViewById(R.id.txtSingleItemTitle)
     val description_food : TextView = itemview.findViewById(R.id.txtSingleItemAuthorName)
     val recipeButton : Button = itemview.findViewById(R.id.btnRecipe)
+    val orderButton: Button = itemview.findViewById(R.id.btnOrder)
 
 }
 interface onRecipeClicked{
     fun onRecipeClicked(item : FoodItem)
+    fun onOrderClicked(item: FoodItem)
 }
