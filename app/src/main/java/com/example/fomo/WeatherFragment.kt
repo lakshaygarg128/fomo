@@ -6,16 +6,13 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.example.fomo.Networking.Weather
 import com.example.fomo.Networking.retrofitInstance
 import com.example.fomo.databinding.FragmentWeatherBinding
-import com.example.fomo.utils.SessionManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
@@ -32,7 +29,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         super.onCreate(savedInstanceState)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity as Activity)
         ActivityResultContracts.RequestPermission()
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,6 +60,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             override fun onResponse(call: retrofit2.Call<Weather>, response: Response<Weather>) {
                val weather = response.body()
                 if(weather!=null){
+                    binding.weather.text = "Weather today is ${weather.description}"
                     Toast.makeText(activity as Context,"${weather.city}  ${weather.temperature}", Toast.LENGTH_SHORT).show()
                 }
             }
