@@ -179,7 +179,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
     }
 
     override fun onRecipeClicked(item: FoodItem) {
-        Toast.makeText(activity as Context,"${item.name}",Toast.LENGTH_SHORT).show()
+
         val intent = Intent(requireContext(), RecipeActivity::class.java)
         intent.putExtra("youtube", item.recipe)
         intent.putExtra("name", item.name)

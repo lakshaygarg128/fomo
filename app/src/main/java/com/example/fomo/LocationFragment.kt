@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -22,6 +23,7 @@ import com.example.fomo.Networking.FoodItem
 import com.example.fomo.Networking.retrofitInstance
 import com.example.fomo.databinding.FragmentLocationBinding
 import com.example.fomo.databinding.FragmentWeatherBinding
+import com.example.fomo.utils.Constants
 import com.example.fomo.utils.FoodAdapter
 import com.example.fomo.utils.onRecipeClicked
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -46,6 +48,7 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
     private lateinit var  adapter :FoodAdapter
     lateinit var longitute : String
     lateinit var latitude : String
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +87,12 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
         binding.recylerViewfoodweather.layoutManager = LinearLayoutManager(activity as Context)
         adapter = FoodAdapter(this)
         binding.recylerViewfoodweather.adapter = adapter
-
+        if(activity!=null) {
+            sharedPreferences =
+                activity?.getSharedPreferences(Constants.SHARED_PREFERENCE, Context.MODE_PRIVATE)!!
+            binding.cityTv.text=sharedPreferences.getString(Constants.CITY,null)
+            binding.tempTv.text=sharedPreferences.getString(Constants.TEMP,null)
+        }
     }
 
     suspend  fun fetchFoodData() {
@@ -120,7 +128,7 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
     }
 
     override fun onRecipeClicked(item: FoodItem) {
-        Toast.makeText(activity as Context,"${item.name}",Toast.LENGTH_SHORT).show()
+
         val intent = Intent(requireContext(), RecipeActivity::class.java)
         intent.putExtra("youtube", item.recipe)
         intent.putExtra("name", item.name)
