@@ -19,6 +19,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     lateinit var email:String
     lateinit var password: String
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         sharedPreferences=getSharedPreferences(Constants.SHARED_PREFERENCE,Context.MODE_PRIVATE)
         if(sharedPreferences.getBoolean(Constants.USER_LOGIN,false))
         {
@@ -26,9 +29,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             finish()
         }
         else {
-            super.onCreate(savedInstanceState)
-            binding = ActivityLoginBinding.inflate(layoutInflater)
-            setContentView(binding.root)
             binding.btnLogin.setOnClickListener(this)
             binding.txtRegister.setOnClickListener(this)
             binding.txtForgotPassword.setOnClickListener(this)
