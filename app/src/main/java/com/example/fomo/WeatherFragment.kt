@@ -149,14 +149,15 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
                val weather = response.body()
                 if(weather!=null){
                     binding.cityTv.text = "${weather.city}"
-                    binding.tempTv.text = "${weather.temperature}"
+                    val temp="${weather.temperature}°C"
+                    binding.tempTv.text = temp
                     if(activity!=null) {
                         sharedPreferences = activity?.getSharedPreferences(
                             Constants.SHARED_PREFERENCE,
                             Context.MODE_PRIVATE
                         )!!
                         sharedPreferences.edit().putString(Constants.CITY,weather.city).apply()
-                        sharedPreferences.edit().putString(Constants.TEMP,weather.temperature.toString()).apply()
+                        sharedPreferences.edit().putString(Constants.TEMP,temp).apply()
                     }
                     ResultWeather(weather.feelslike,weather.description)
 
