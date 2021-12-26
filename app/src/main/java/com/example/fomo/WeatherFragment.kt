@@ -3,6 +3,7 @@ package com.example.fomo
 import android.app.Activity
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -26,6 +27,7 @@ import com.example.fomo.utils.onRecipeClicked
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -64,7 +66,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
 
     private suspend fun Foodfetchdata() {
         // API CALL
-        delay(2000)
+        delay(3000)
         Log.d("weather","$weatherres")
         val instance = retrofitInstance.api.getDishes(weatherres)
         instance.enqueue(object : Callback<List<FoodItem>>{
@@ -171,7 +173,11 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
     }
 
     override fun onRecipeClicked(item: FoodItem) {
-        // on recipe Button clicked
+        val intent = Intent(requireContext(), RecipeActivity::class.java)
+        intent.putExtra("youtube", item.recipe)
+        intent.putExtra("name", item.name)
+        intent.putExtra("desc", item.description)
+        startActivity(intent)
 
     }
 
