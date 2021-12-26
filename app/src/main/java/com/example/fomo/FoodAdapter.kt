@@ -1,19 +1,17 @@
 package com.example.fomo.utils
 
 import android.view.LayoutInflater
-import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.fomo.Food
+import com.example.fomo.Networking.FoodItem
 import com.example.fomo.R
 
 class FoodAdapter(val listener: onRecipeClicked ):RecyclerView.Adapter<FoodViewHolder>(){
-    val items: ArrayList<Food> = ArrayList()
+    val items: ArrayList<FoodItem> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_food,parent,false)
         val viewholder = FoodViewHolder(view)
@@ -25,17 +23,17 @@ class FoodAdapter(val listener: onRecipeClicked ):RecyclerView.Adapter<FoodViewH
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val currentitem  =items[position]
-        holder.title_food.text= currentitem.title
-        Glide.with(holder.itemView.context).load(currentitem.imageurl).into(holder.image_food)
-        holder.description_food.text = currentitem.descp
+        holder.title_food.text= currentitem.name
+        Glide.with(holder.itemView.context).load(currentitem.image).into(holder.image_food)
+        holder.description_food.text = currentitem.description
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
-    fun updatelist(updated:ArrayList<Food>){
+    fun updatelist(updated:List<FoodItem>){
         items.clear()
-        items.addAll(updated)
+        items.addAll(updated )
         notifyDataSetChanged()
     }
 
@@ -47,5 +45,5 @@ class FoodViewHolder(itemview : View): RecyclerView.ViewHolder(itemview){
 
 }
 interface onRecipeClicked{
-    fun onRecipeClicked(item : Food)
+    fun onRecipeClicked(item : FoodItem)
 }
