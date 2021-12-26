@@ -53,6 +53,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWeatherBinding.bind(view)
+        RequestPermission()
         CheckPermisssion()
 
         GlobalScope.launch {
@@ -134,7 +135,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
                 }
             }
         }
-        ActivityResultContracts.RequestPermission()
+        RequestPermission()
         return
     }
 

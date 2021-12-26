@@ -67,7 +67,7 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
                 }
             }
         }
-        ActivityResultContracts.RequestPermission()
+        RequestPermission()
         return
     }
 
@@ -76,6 +76,7 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
         binding = FragmentLocationBinding.bind(view)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity as Activity)
         ActivityResultContracts.RequestPermission()
+        RequestPermission()
         CheckPermisssion()
         GlobalScope.launch {
             fetchFoodData()
