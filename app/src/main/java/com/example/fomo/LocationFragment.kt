@@ -3,6 +3,7 @@ package com.example.fomo
 import android.app.Activity
 import android.app.DownloadManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -124,11 +125,16 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
     }
 
     override fun onRecipeClicked(item: FoodItem) {
-
+        Toast.makeText(activity as Context,"${item.name}",Toast.LENGTH_SHORT).show()
+        val intent = Intent(requireContext(), RecipeActivity::class.java)
+        intent.putExtra("youtube", item.recipe)
+        intent.putExtra("name", item.name)
+        intent.putExtra("desc", item.description)
+        startActivity(intent)
     }
 
     override fun onOrderClicked(item: FoodItem) {
-        TODO("Not yet implemented")
+
     }
 
 }
