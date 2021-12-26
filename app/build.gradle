@@ -55,10 +55,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
-
-
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // Architecture
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
@@ -75,7 +73,7 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     //Location
-    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.android.gms:play-services-location:19.0.0'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:29.0.3')

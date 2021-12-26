@@ -21,7 +21,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class WeatherFragment : Fragment() {
     private var Permission_id = 100
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -55,7 +54,7 @@ class WeatherFragment : Fragment() {
     private fun apicall(latitude: Double, longitude: Double) {
         val instance = retrofitInstance.api.getWeather(latitude.toString(),longitude.toString())
         instance.enqueue(object : Callback<Weather>{
-            override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
+            override fun onResponse(call: retrofit2.Call<Weather>, response: Response<Weather>) {
                val weather = response.body()
                 if(weather!=null){
                     Toast.makeText(activity as Context,"${weather.city}  ${weather.temperature}", Toast.LENGTH_SHORT).show()
