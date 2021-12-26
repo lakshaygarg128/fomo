@@ -14,6 +14,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.example.fomo.Networking.Weather
 import com.example.fomo.Networking.retrofitInstance
+import com.example.fomo.databinding.FragmentWeatherBinding
+import com.example.fomo.utils.SessionManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
@@ -21,19 +23,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WeatherFragment : Fragment() {
+class WeatherFragment : Fragment(R.layout.fragment_weather) {
     private var Permission_id = 100
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var binding : FragmentWeatherBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity as Activity)
         ActivityResultContracts.RequestPermission()
-        CheckPermisssion()
-        return inflater.inflate(R.layout.fragment_weather, container, false)
+
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentWeatherBinding.bind(view)
+        CheckPermisssion()
+    }
+
     private fun CheckPermisssion(){
         val task : Task<Location> = fusedLocationProviderClient.lastLocation
 
