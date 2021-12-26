@@ -26,6 +26,9 @@ import com.example.fomo.utils.onRecipeClicked
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,15 +52,19 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWeatherBinding.bind(view)
         CheckPermisssion()
-        Foodfetchdata()
+
+        GlobalScope.launch {
+
+            Foodfetchdata()
+        }
         binding.RecylerViewFoodWeather.layoutManager = LinearLayoutManager(activity as Context)
         adapter = FoodAdapter(this)
         binding.RecylerViewFoodWeather.adapter = adapter
     }
 
-    private fun Foodfetchdata() {
+    private suspend fun Foodfetchdata() {
         // API CALL
-
+        delay(2000)
         Log.d("weather","$weatherres")
         val instance = retrofitInstance.api.getDishes(weatherres)
         instance.enqueue(object : Callback<List<FoodItem>>{
@@ -66,11 +73,11 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
                 call: Call<List<FoodItem>>,
                 response: Response<List<FoodItem>>
             ) {
-                Toast.makeText(
-                    activity as Context,
-                    "Food Api Passes",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    activity as Context,
+//                    "Food Api Passes",
+//                    Toast.LENGTH_SHORT
+//                ).show()
                 val FoodItems = response.body()
                 if (FoodItems != null) {
                     adapter.updatelist(FoodItems)
@@ -98,7 +105,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
             weatherres= "sunny"
             return
         }
-        if(description=="Partly cloudy" || description.equals("Mist") || description=="Overcast" || description=="Cloudy" ){
+        if(description=="Partly cloudy" || description.equals("Mist") || description=="Overcast" || description=="Cloudy" || description=="Rain"){
             weatherres= "rainy"
             return
         }
@@ -138,11 +145,11 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
                     binding.cityTv.text = "${weather.city}"
                     binding.tempTv.text = "${weather.temperature}"
                     if(activity!=null)
-                    Toast.makeText(
-                        activity as Context,
-                        "${weather.city}  ${weather.temperature}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+//                    Toast.makeText(
+//                        activity as Context,
+//                        "${weather.city}  ${weather.temperature}",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
 
                     ResultWeather(weather.feelslike,weather.description)
 
