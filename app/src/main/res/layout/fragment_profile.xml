@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/top_name_ly"
+            android:background="@drawable/rectangle_shape"
             android:backgroundTint="@color/white">
 
                 <RelativeLayout
@@ -72,14 +73,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:textColor="#3A3B70"
-                            android:textSize="16sp" />
+                            android:text="Name"
+                            android:textStyle="bold"
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#3A3B70"
-                            android:textSize="12sp" />
+                            android:text="Email"
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -172,7 +176,8 @@
                     android:layout_marginBottom="10dp"
                     android:text="Account Settings"
                     android:textColor="#3A3B70"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/notification_setting"
@@ -181,13 +186,14 @@
                     android:layout_below="@id/settingtext"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_toLeftOf="@id/privacyPolicyButton"
                     android:layout_marginBottom="20dp"
+                    android:layout_toLeftOf="@id/privacyPolicyButton"
                     android:drawableTop="@drawable/ic_icon_ionic_ios_notifications_outline"
                     android:drawablePadding="8dp"
                     android:text="Notification "
                     android:textColor="#3A3B70"
-                    android:textSize="20sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/privacyPolicyButton"
@@ -198,9 +204,11 @@
                     android:layout_marginTop="20dp"
                     android:drawableTop="@drawable/ic_policy_black_24dp"
                     android:drawablePadding="8dp"
+                    android:gravity="center"
                     android:text="Privacy\nPolicy"
                     android:textColor="#3A3B70"
-                    android:textSize="20sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/rating_setting"
@@ -214,7 +222,8 @@
                     android:drawablePadding="8dp"
                     android:text="Rate Our App "
                     android:textColor="#3A3B70"
-                    android:textSize="20sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/faqButton"
@@ -222,13 +231,30 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/notification_setting"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="25dp"
                     android:drawableTop="@drawable/ic_icon_ionic_ios_notifications_outline"
                     android:drawablePadding="8dp"
+                    android:gravity="center"
                     android:text="FAQs"
                     android:textColor="#3A3B70"
-                    android:textSize="20sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/notification_setting"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_toStartOf="@id/faqButton"
+                    android:drawableTop="@drawable/ic_icon_ionic_ios_notifications_outline"
+                    android:drawablePadding="8dp"
+                    android:text="My Cart"
+                    android:textColor="#3A3B70"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
