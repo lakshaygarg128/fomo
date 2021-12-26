@@ -95,11 +95,6 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
                 call: Call<List<FoodItem>>,
                 response: Response<List<FoodItem>>
             ) {
-                Toast.makeText(
-                    activity as Context,
-                    "Food Api Passes",
-                    Toast.LENGTH_SHORT
-                ).show()
                 val FoodItems = response.body()
                 if (FoodItems != null) {
                     adapter.updatelist(FoodItems)
@@ -114,7 +109,6 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
                 ).show()
 
             }
-
         }
         )
     }
