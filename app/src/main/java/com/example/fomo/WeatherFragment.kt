@@ -64,6 +64,8 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             override fun onResponse(call: retrofit2.Call<Weather>, response: Response<Weather>) {
                val weather = response.body()
                 if(weather!=null){
+                    binding.cityTv.text = "${weather.city}"
+                    binding.tempTv.text = "${weather.temperature}"
                     Toast.makeText(activity as Context,"${weather.city}  ${weather.temperature}", Toast.LENGTH_SHORT).show()
                 }
             }

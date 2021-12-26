@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/drawable/custombg.xml" value="0.18385416666666668" />
+        <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/activity_forgot_password.xml" value="0.16770833333333332" />
+        <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/activity_login.xml" value="0.16770833333333332" />
         <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/activity_main.xml" value="0.12" />
         <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/fragment_location.xml" value="0.16770833333333332" />
         <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/fragment_mood.xml" value="0.16770833333333332" />
         <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/fragment_profile.xml" value="0.16770833333333332" />
         <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/fragment_weather.xml" value="0.16770833333333332" />
+        <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/item_food.xml" value="0.22" />
+        <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/layout/no_internet_connection.xml" value="0.16770833333333332" />
         <entry key="..\:/CODES/app/fomoHack/fomo/app/src/main/res/menu/button_nav.xml" value="0.1" />
         <entry key="..\:/Users/karan/AndroidStudioProjects/fomo/app/src/main/res/drawable/button_background.xml" value="0.18611111111111112" />
         <entry key="..\:/Users/karan/AndroidStudioProjects/fomo/app/src/main/res/drawable/edittext_backgroung.xml" value="0.18611111111111112" />
@@ -15,8 +20,6 @@
         <entry key="..\:/Users/karan/AndroidStudioProjects/fomo/app/src/main/res/layout/activity_login.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/karan/AndroidStudioProjects/fomo/app/src/main/res/layout/activity_main.xml" value="0.15443840579710144" />
         <entry key="..\:/Users/karan/AndroidStudioProjects/fomo/app/src/main/res/layout/activity_signup.xml" value="0.22" />
-        <entry key="..\:/Users/karan/AndroidStudioProjects/fomo/app/src/main/res/layout/fragment_weather.xml" value="0.15443840579710144" />
-        <entry key="..\:/Users/karan/AndroidStudioProjects/fomo/app/src/main/res/layout/item_food.xml" value="0.16666666666666666" />
       </map>
     </option>
   </component>

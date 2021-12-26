@@ -1,36 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="7dp"
+    android:orientation="vertical"
     tools:context=".WeatherFragment">
 
     <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content"
+        android:background="@drawable/custombg"
+        android:orientation="vertical">
+
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Weather"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="20dp"
+            android:text="Today's weather is ..."
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#FFEE58">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Location: "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/city_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/location"
             android:text="City"
+            android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
-            />
-        <TextView
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location"
+            android:text="Your Location: "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/temp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/city_tv"
+            android:layout_toRightOf="@id/temp"
             android:text="temperature"
-            android:textStyle="bold"
+            android:textColor="@color/black"
             android:textSize="20sp"
-            />
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recommended Dishes"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecylerView_food_weather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>
