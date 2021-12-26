@@ -16,7 +16,10 @@
             android:id="@+id/imgSingleItemPic"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="6dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_foreground" />
@@ -28,10 +31,10 @@
             android:layout_toEndOf="@+id/imgSingleItemPic"
             android:maxWidth="200dp"
             android:padding="10dp"
-            tools:text="Butter Chicken"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Butter Chicken" />
 
         <TextView
             android:id="@+id/txtSingleItemAuthorName"
