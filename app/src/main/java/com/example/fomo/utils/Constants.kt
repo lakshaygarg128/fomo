@@ -9,4 +9,6 @@ object Constants {
     var USER_LAST_NAME="user_last_name"
     var USER_EMAIL="user_email"
     var USER_LOGIN="is_logged_in"
+    var CITY="city"
+    var TEMP="temperature"
 }

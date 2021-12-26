@@ -4,6 +4,7 @@ import android.app.Activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.example.fomo.Networking.FoodItem
 import com.example.fomo.Networking.Weather
 import com.example.fomo.Networking.retrofitInstance
 import com.example.fomo.databinding.FragmentWeatherBinding
+import com.example.fomo.utils.Constants
 import com.example.fomo.utils.FoodAdapter
 import com.example.fomo.utils.SessionManager
 import com.example.fomo.utils.onRecipeClicked
@@ -40,6 +42,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var  adapter :FoodAdapter
     private lateinit var binding : FragmentWeatherBinding
+    private lateinit var sharedPreferences: SharedPreferences
 
     lateinit var weatherres : String
 
@@ -147,7 +150,14 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
                 if(weather!=null){
                     binding.cityTv.text = "${weather.city}"
                     binding.tempTv.text = "${weather.temperature}"
-
+                    if(activity!=null) {
+                        sharedPreferences = activity?.getSharedPreferences(
+                            Constants.SHARED_PREFERENCE,
+                            Context.MODE_PRIVATE
+                        )!!
+                        sharedPreferences.edit().putString(Constants.CITY,weather.city).apply()
+                        sharedPreferences.edit().putString(Constants.TEMP,weather.temperature.toString()).apply()
+                    }
                     ResultWeather(weather.feelslike,weather.description)
 
 

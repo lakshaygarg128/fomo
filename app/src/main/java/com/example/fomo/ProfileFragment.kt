@@ -33,6 +33,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val userName=sharedPreferences.getString(Constants.USER_FIRST_NAME,null)+sharedPreferences.getString(Constants.USER_LAST_NAME,null)
         binding.name.text=userName
         binding.email.text=sharedPreferences.getString(Constants.USER_EMAIL,null)
+        binding.city.text=sharedPreferences.getString(Constants.CITY,null)
+        binding.temp.text=sharedPreferences.getString(Constants.TEMP,null)
         binding.logout.setOnClickListener {
             if (activity != null) {
                 val alertDialog = AlertDialog.Builder(activity as Context)
