@@ -27,7 +27,6 @@ class LocationFragment : Fragment() {
 
     private var Permission_id = 100
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var locationRequest: LocationRequest
 
 
 

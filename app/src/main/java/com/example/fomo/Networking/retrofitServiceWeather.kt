@@ -7,5 +7,5 @@ import retrofit2.http.Query
 interface retrofitServiceWeather {
 
     @GET("/weather/details")
-    fun getWeather(@Query("latitude") latitude:String,@Query("longitude") longitude:Double): Call<Weather>
+    fun getWeather(@Query("latitude") latitude:String,@Query("longitude") longitude:String): Call<Weather>
 }
