@@ -1,5 +1,6 @@
 package com.example.fomo
 
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -29,8 +30,8 @@ class FirebaseStore {
     fun getUserDetails(activity: LoginActivity)
     {
         mFirestore.collection("users").document(getCurrentUserId()).get().addOnSuccessListener {document->
-                val user:User=document.toObject(User::class.java)!!
-                activity.gotUserDetails(user)
+                val user=document.toObject(User::class.java)
+                activity.gotUserDetails(user!!)
             }.addOnFailureListener {
                 activity.displayErrorSnackbar(it.message!!,true)
         }
