@@ -3,6 +3,7 @@ package com.example.fomo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.NonNull
 import com.example.fomo.databinding.ActivityRecipeBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -26,6 +27,7 @@ class RecipeActivity : AppCompatActivity() {
         name = intent.getStringExtra("name").toString()
         youtube = intent.getStringExtra("youtube").toString()
         desc = intent.getStringExtra("desc").toString()
+
 
         setData()
         initializeYoutubevideo()
