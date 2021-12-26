@@ -66,7 +66,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
 
     private suspend fun Foodfetchdata() {
         // API CALL
-        delay(3000)
+        delay(4000)
         Log.d("weather","$weatherres")
         val instance = retrofitInstance.api.getDishes(weatherres)
         instance.enqueue(object : Callback<List<FoodItem>>{
