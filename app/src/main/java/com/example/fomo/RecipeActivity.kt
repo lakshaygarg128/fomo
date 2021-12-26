@@ -2,6 +2,7 @@ package com.example.fomo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.NonNull
@@ -26,6 +27,7 @@ class RecipeActivity : AppCompatActivity() {
 
         name = intent.getStringExtra("name").toString()
         youtube = intent.getStringExtra("youtube").toString()
+        youtube=youtube.drop(17)
         desc = intent.getStringExtra("desc").toString()
 
 
