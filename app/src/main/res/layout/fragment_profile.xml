@@ -1,14 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    android:background="@drawable/custombg">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="PROFILE" />
+        <RelativeLayout
+            android:id="@+id/top_name_ly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="10dp">
 
-</FrameLayout>
+            <TextView
+                android:id="@+id/my_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="My Profile"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="5dp"
+                android:text="Log Out >"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/top_name_ly"
+            android:backgroundTint="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/imgprofile"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_account_circle_black_24dp" />
+
+                    <LinearLayout
+                        android:id="@+id/details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_toRightOf="@+id/imgprofile"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#3A3B70"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#3A3B70"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/editProfileButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/ic_baseline_edit_24" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/prof"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detail">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="15dp">
+
+                        <RelativeLayout
+                            android:id="@+id/loc"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:background="@drawable/profile_bg"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="32dp"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/city"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="City"
+                                        android:textColor="#3A3B70"
+                                        android:textSize="28sp" />
+
+                                    <TextView
+                                        android:id="@+id/temp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Temperature"
+                                        android:textColor="#3A3B70"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="16dp" />
+                        </RelativeLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/prof">
+
+                <TextView
+                    android:id="@+id/settingtext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Account Settings"
+                    android:textColor="#3A3B70"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/notification_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/settingtext"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@id/privacyPolicyButton"
+                    android:layout_marginBottom="20dp"
+                    android:drawableTop="@drawable/ic_icon_ionic_ios_notifications_outline"
+                    android:drawablePadding="8dp"
+                    android:text="Notification "
+                    android:textColor="#3A3B70"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/privacyPolicyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/settingtext"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:drawableTop="@drawable/ic_policy_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:text="Privacy\nPolicy"
+                    android:textColor="#3A3B70"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/rating_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/settingtext"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@id/privacyPolicyButton"
+                    android:drawableTop="@drawable/ic_star_border_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:text="Rate Our App "
+                    android:textColor="#3A3B70"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/faqButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/notification_setting"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:drawableTop="@drawable/ic_icon_ionic_ios_notifications_outline"
+                    android:drawablePadding="8dp"
+                    android:text="FAQs"
+                    android:textColor="#3A3B70"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>

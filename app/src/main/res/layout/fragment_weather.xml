@@ -42,12 +42,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="#FFEE58">
+        android:background="@drawable/custombg2">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:text="Your Location: "
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -57,9 +59,10 @@
             android:id="@+id/city_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/location"
             android:text="City"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -68,7 +71,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/location"
-            android:text="Your Location: "
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            android:text="Temperature: "
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -80,7 +85,7 @@
             android:layout_below="@id/city_tv"
             android:layout_toRightOf="@id/temp"
             android:text="temperature"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
