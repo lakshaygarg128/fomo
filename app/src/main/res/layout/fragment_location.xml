@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="7dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".LocationFragment">
+    android:background="@drawable/custombg">
 
     <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custombg"
+        android:background="@drawable/custombg3"
         android:orientation="vertical">
 
         <TextView
@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Location"
-            android:textColor="@color/white"
+            android:textColor="#0B8AE0"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -31,24 +31,91 @@
             android:layout_gravity="center"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="20dp"
-            android:text="Your location is ..."
+            android:text="Popular dishes in your current location!"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/prof"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detail">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="15dp">
+
+            <RelativeLayout
+                android:id="@+id/loc"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/img"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/city_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="City"
+                            android:textColor="#3A3B70"
+                            android:textSize="28sp" />
+
+                        <TextView
+                            android:id="@+id/temp_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Temperature"
+                            android:textColor="#3A3B70"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp" />
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="5dp"
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Recommended Dishes"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -56,7 +123,9 @@
             android:id="@+id/RecylerView_food_weather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/item_food"
+            tools:itemCount="2"/>
 
     </LinearLayout>
 </LinearLayout>
