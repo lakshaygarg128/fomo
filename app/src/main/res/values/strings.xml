@@ -2,4 +2,17 @@
     <string name="app_name">fomo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_id">Email ID</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account_login">Already have an account?<b>Login</b></string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="do_not_have_an_account">Do not Have an account? <b>Register</b>></string>
+    <string name="enter_email">Please Enter Your Email Id</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="reset_email_sent">A Reset Email Has Been Sent To the Registered Id</string>
 </resources>

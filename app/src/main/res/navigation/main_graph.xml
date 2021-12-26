@@ -12,17 +12,17 @@
         android:label="fragment_mood"
         tools:layout="@layout/fragment_mood" />
     <fragment
-        android:id="@+id/weatherFragment"
+        android:id="@+id/weather"
         android:name="com.example.fomo.WeatherFragment"
         android:label="fragment_weather"
         tools:layout="@layout/fragment_weather" />
     <fragment
-        android:id="@+id/locationFragment"
+        android:id="@+id/location"
         android:name="com.example.fomo.LocationFragment"
         android:label="fragment_location"
         tools:layout="@layout/fragment_location" />
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/profile"
         android:name="com.example.fomo.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
