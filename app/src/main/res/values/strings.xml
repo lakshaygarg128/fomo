@@ -17,4 +17,5 @@
     <string name="reset_email_sent">A Reset Email Has Been Sent To the Registered Id</string>
     <string name="recipe">Recipe</string>
     <string name="order_now">Order</string>
+    <string name="coming_soon">This Functionality Will Be Added Soon</string>
 </resources>

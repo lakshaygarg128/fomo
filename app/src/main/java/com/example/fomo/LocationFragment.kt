@@ -61,7 +61,7 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
             task.addOnSuccessListener {
                 if(it!=null){
                     //Toast.makeText(activity as Context,"${it.latitude} ${it.longitude}",Toast.LENGTH_SHORT).show()
-                    binding.weather.text = "Your location is ${it.longitude}"
+
                     latitude=it.latitude.toString()
                     longitute=it.longitude.toString()
                 }

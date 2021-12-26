@@ -49,13 +49,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
         binding.cart.setOnClickListener{
-            val i = Intent(requireContext(), OrderFragment::class.java)
-            startActivity(i)
+            if(activity!=null)
+            startActivity(Intent(activity as Context, OrderActivity::class.java))
+
         }
 
         binding.orders.setOnClickListener{
-            val i = Intent(requireContext(), CartFragment::class.java)
-            startActivity(i)
+            if (activity!=null)
+            startActivity(Intent(activity as Context, CartActivity::class.java))
+
         }
     }
 
