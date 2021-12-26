@@ -10,7 +10,7 @@ object retrofitInstance {
             .baseUrl("https://fomo-athenahack-hackathon.herokuapp.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(retrofitServiceWeather::class.java)
+            .create(retrofitService::class.java)
 
 
 }
