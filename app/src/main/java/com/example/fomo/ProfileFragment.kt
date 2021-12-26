@@ -3,6 +3,7 @@ package com.example.fomo
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fomo.databinding.FragmentProfileBinding
 import com.example.fomo.databinding.FragmentWeatherBinding
@@ -46,6 +48,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
 
+        binding.cart.setOnClickListener{
+            val i = Intent(requireContext(), OrderFragment::class.java)
+            startActivity(i)
+        }
+
+        binding.orders.setOnClickListener{
+            val i = Intent(requireContext(), CartFragment::class.java)
+            startActivity(i)
+        }
     }
 
 }

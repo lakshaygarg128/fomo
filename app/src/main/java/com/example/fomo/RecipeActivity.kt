@@ -36,8 +36,8 @@ class RecipeActivity : AppCompatActivity() {
     }
 
     private fun setData() {
-        binding?.dish?.text = name
-        binding?.desc?.text = desc
+        binding!!.dish.text = name
+        binding!!.desc.text = desc
     }
 
     private fun initializeYoutubevideo() {

@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/custombg">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
-
     <RelativeLayout
         android:id="@+id/top_name_ly"
         android:layout_width="match_parent"
@@ -244,7 +239,7 @@
                 android:layout_below="@id/notification_setting"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="25dp"
-                android:drawableTop="@drawable/ic_icon_ionic_ios_notifications_outline"
+                android:drawableTop="@drawable/ic_baseline_question_answer_24"
                 android:drawablePadding="8dp"
                 android:gravity="center"
                 android:text="FAQs"
@@ -261,10 +256,10 @@
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="20dp"
                 android:layout_toLeftOf="@id/privacyPolicyButton"
-                android:drawableTop="@drawable/ic_icon_ionic_ios_notifications_outline"
+                android:drawableTop="@drawable/ic_baseline_shopping_cart_24"
                 android:drawablePadding="8dp"
                 android:gravity="center"
-                android:text="My Cart"
+                android:onClick="openCart"
                 android:textColor="#3A3B70"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -277,7 +272,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="25dp"
                 android:layout_toRightOf="@id/privacyPolicyButton"
-                android:drawableTop="@drawable/ic_star_border_black_24dp"
+                android:drawableTop="@drawable/ic_baseline_shopping_bag_24"
                 android:drawablePadding="8dp"
                 android:gravity="center"
                 android:text="My Orders"
@@ -288,4 +283,5 @@
         </RelativeLayout>
     </RelativeLayout>
     </ScrollView>
+
 </RelativeLayout>
