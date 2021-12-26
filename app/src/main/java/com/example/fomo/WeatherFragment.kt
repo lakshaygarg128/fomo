@@ -182,5 +182,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
 
     }
 
+    override fun onOrderClicked(item: FoodItem) {
+        TODO("Not yet implemented")
+    }
+
 
 }
