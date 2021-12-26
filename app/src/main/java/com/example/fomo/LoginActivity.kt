@@ -1,6 +1,8 @@
 package com.example.fomo
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,9 +10,11 @@ import android.view.View
 import com.airbnb.lottie.utils.Utils
 import com.example.fomo.databinding.ActivityLoginBinding
 import com.example.fomo.databinding.ActivityMainBinding
+import com.example.fomo.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
+    lateinit var sharedPreferences: SharedPreferences
     lateinit var binding: ActivityLoginBinding
     lateinit var email:String
     lateinit var password: String
@@ -43,8 +47,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password).addOnCompleteListener {task->
                 if(task.isSuccessful)
                 {
-                    startActivity(Intent(this@LoginActivity,MainActivity::class.java))
-                    finish()
+                    FirebaseStore().getUserDetails(this@LoginActivity)
                 }
                 else
                 {
@@ -66,5 +69,16 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             }
             else-> true
         }
+    }
+
+    fun gotUserDetails(user:User) {
+        sharedPreferences=getSharedPreferences(Constants.SHARED_PREFERENCE,Context.MODE_PRIVATE)
+        sharedPreferences.edit().putString(Constants.USER_ID,user.uId).apply()
+        sharedPreferences.edit().putString(Constants.USER_FIRST_NAME,user.firstName).apply()
+        sharedPreferences.edit().putString(Constants.USER_LAST_NAME,user.lastName).apply()
+        sharedPreferences.edit().putString(Constants.USER_EMAIL,user.email).apply()
+        sharedPreferences.edit().putBoolean(Constants.USER_LOGIN,true).apply()
+        startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+        finish()
     }
 }
