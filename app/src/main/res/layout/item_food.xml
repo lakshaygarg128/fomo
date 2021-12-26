@@ -7,7 +7,7 @@
     android:layout_margin="6dp"
     app:cardCornerRadius="10dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rlRecyclerDashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,17 +16,15 @@
             android:id="@+id/imgSingleItemPic"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:padding="6dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtSingleItemTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/imgSingleItemPic"
             android:maxWidth="200dp"
@@ -34,46 +32,56 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgSingleItemPic"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Butter Chicken" />
 
         <TextView
             android:id="@+id/txtSingleItemAuthorName"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtSingleItemTitle"
+            android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/imgSingleItemPic"
             android:padding="10dp"
             android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llButtons"
             tools:text="this is made in a rich creamy gravy" />
 
         <LinearLayout
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
             android:id="@+id/llButtons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgSingleItemPic"
+            app:layout_constraintTop_toBottomOf="@+id/txtSingleItemTitle">
 
             <Button
                 android:id="@+id/btnRecipe"
-                android:text="@string/recipe"
-                android:padding="6dp"
                 android:layout_width="wrap_content"
-                android:layout_margin="10dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0B8AE0"/>
+                android:layout_margin="10dp"
+                android:backgroundTint="#0B8AE0"
+                android:padding="6dp"
+                android:text="@string/recipe" />
 
             <Button
                 android:id="@+id/btnOrder"
-                android:text="@string/order_now"
-                android:padding="6dp"
-                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#0B8AE0" />
+                android:layout_margin="10dp"
+                android:backgroundTint="#0B8AE0"
+                android:padding="6dp"
+                android:text="@string/order_now" />
 
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
