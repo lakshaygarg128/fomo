@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.menu_profile -> replaceFragment(ProfileFragment())
                 R.id.weather_menu -> replaceFragment(WeatherFragment())
-                R.id.menu_mood -> replaceFragment(Mood())
                 R.id.menu_location-> replaceFragment(LocationFragment())
             }
             true

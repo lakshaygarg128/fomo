@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-    <item
+        <item
+            android:id="@+id/weather_menu"
+            android:title="Weather"
+            android:icon="@drawable/weather_icon"
+            />
+        <item
+            android:id="@+id/menu_location"
+            android:title="location"
+            android:icon="@drawable/location_icon"
+            />
+        <item
         android:id="@+id/menu_profile"
         android:title="Profile"
         android:icon="@drawable/profile_icon"
         />
-    <item
-        android:id="@+id/weather_menu"
-        android:title="Weather"
-        android:icon="@drawable/weather_icon"
-        />
-    <item android:title="Mood"
-        android:id="@+id/menu_mood"
-        android:icon="@drawable/mood"
-        />
-    <item
-        android:id="@+id/menu_location"
-        android:title="location"
-        android:icon="@drawable/location_icon"
-        />
+
     </group>
 </menu>

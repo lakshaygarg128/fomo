@@ -4,13 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/mood">
+    app:startDestination="@id/weather">
 
-    <fragment
-        android:id="@+id/mood"
-        android:name="com.example.fomo.Mood"
-        android:label="fragment_mood"
-        tools:layout="@layout/fragment_mood" />
     <fragment
         android:id="@+id/weather"
         android:name="com.example.fomo.WeatherFragment"
