@@ -15,4 +15,6 @@
     <string name="enter_email">Please Enter Your Email Id</string>
     <string name="reset_password">Reset Password</string>
     <string name="reset_email_sent">A Reset Email Has Been Sent To the Registered Id</string>
+    <string name="recipe">Recipe</string>
+    <string name="order_now">Order</string>
 </resources>

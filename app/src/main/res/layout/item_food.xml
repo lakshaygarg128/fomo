@@ -1,63 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:scaleType="fitCenter"
-        android:elevation="50dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@color/cardview_light_background"
-        />
-    <TextView
-        android:id="@+id/Title"
-        android:text="NA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       android:layout_margin="12dp"
-        android:textSize="20sp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/description"
-        android:textColor="@color/black"
-        android:textSize="10sp"
-         android:layout_margin="10dp"
-        android:maxLines="2"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="10dp">
 
-        />
-    <Button
+    <RelativeLayout
+        android:id="@+id/rlRecyclerDashboard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Order"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:layout_margin="15dp"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="RECIPE"
-        android:textSize="20sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        />
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/imgSingleItemPic"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="10dp"
+            android:padding="6dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/txtSingleItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/imgSingleItemPic"
+            android:maxWidth="200dp"
+            android:padding="10dp"
+            tools:text="Butter Chicken"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtSingleItemAuthorName"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSingleItemTitle"
+            android:layout_toEndOf="@+id/imgSingleItemPic"
+            android:padding="10dp"
+            android:textSize="18sp"
+            tools:text="this is made in a rich creamy gravy" />
+
+        <LinearLayout
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/llButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnRecipe"
+                android:text="@string/recipe"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background" />
+
+            <Button
+                android:id="@+id/btnOrder"
+                android:text="@string/order_now"
+                android:padding="6dp"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
