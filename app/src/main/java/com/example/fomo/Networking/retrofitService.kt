@@ -10,4 +10,6 @@ interface retrofitService {
     fun getWeather(@Query("latitude") latitude:String,@Query("longitude") longitude:String): Call<Weather>
     @GET("/food/list")
     fun getDishes(@Query("weather") weather:String):Call<List<FoodItem>>
+    @GET("food/list/regionWise")
+    fun getLocationDishes(@Query("latitude") latitude:String,@Query("longitude") longitude:String): Call<List<FoodItem>>
 }

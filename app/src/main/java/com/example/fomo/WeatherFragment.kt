@@ -59,9 +59,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
 
             Foodfetchdata()
         }
-        binding.RecylerViewFoodWeather.layoutManager = LinearLayoutManager(activity as Context)
+        binding.recylerViewFoodWeather.layoutManager = LinearLayoutManager(activity as Context)
         adapter = FoodAdapter(this)
-        binding.RecylerViewFoodWeather.adapter = adapter
+        binding.recylerViewFoodWeather.adapter = adapter
     }
 
     private suspend fun Foodfetchdata() {
