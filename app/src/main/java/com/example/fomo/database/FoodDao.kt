@@ -13,7 +13,7 @@ interface FoodDao {
     @Delete
     suspend fun deleteFood(foodEntity: FoodEntity)
     @Query("Select * from food_table")
-    fun getAllFood():List<LiveData<FoodEntity>>
+    fun getAllFood():LiveData<List<FoodEntity>>
     @Query("Select * from food_table where id=:id")
-    fun getFoodById(id:Int)
+    fun getFoodById(id:Int):FoodEntity
 }
