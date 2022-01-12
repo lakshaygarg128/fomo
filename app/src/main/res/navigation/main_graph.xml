@@ -8,17 +8,17 @@
 
     <fragment
         android:id="@+id/weather"
-        android:name="com.example.fomo.WeatherFragment"
+        android:name="com.example.fomo.ui.WeatherFragment"
         android:label="fragment_weather"
         tools:layout="@layout/fragment_weather" />
     <fragment
         android:id="@+id/location"
-        android:name="com.example.fomo.LocationFragment"
+        android:name="com.example.fomo.ui.LocationFragment"
         android:label="fragment_location"
         tools:layout="@layout/fragment_location" />
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.fomo.ProfileFragment"
+        android:name="com.example.fomo.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action

@@ -1,4 +1,4 @@
-package com.example.fomo
+package com.example.fomo.ui
 
 
 import android.content.Context
@@ -8,6 +8,10 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import com.example.fomo.BaseActivity
+import com.example.fomo.FirebaseStore
+import com.example.fomo.MainActivity
+import com.example.fomo.User
 import com.example.fomo.databinding.ActivitySignupBinding
 import com.example.fomo.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -19,7 +23,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener {
     lateinit var email: String
     lateinit var firstName: String
     lateinit var lastName: String
-    lateinit var user:User
+    lateinit var user: User
     lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +50,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val firebaseUser = task.result!!.user
-                        user=User(
+                        user= User(
                             firebaseUser!!.uid,firstName, lastName, email
                         )
                         FirebaseStore().registerUser(
@@ -107,7 +111,7 @@ class SignupActivity : BaseActivity(), View.OnClickListener {
         sharedPreferences.edit().putString(Constants.USER_LAST_NAME,user.lastName).apply()
         sharedPreferences.edit().putString(Constants.USER_EMAIL,user.email).apply()
         sharedPreferences.edit().putBoolean(Constants.USER_LOGIN,true).apply()
-        val intent= Intent(this@SignupActivity,MainActivity::class.java)
+        val intent= Intent(this@SignupActivity, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }

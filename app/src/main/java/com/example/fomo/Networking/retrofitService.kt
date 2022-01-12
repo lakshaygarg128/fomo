@@ -7,9 +7,9 @@ import retrofit2.http.Query
 interface retrofitService {
 
     @GET("/weather/details")
-    fun getWeather(@Query("latitude") latitude:String,@Query("longitude") longitude:String): Call<Weather>
+    fun getWeather(@Query("latitude") latitude:String ,@Query("longitude") longitude:String): Call<Weather>
     @GET("/food/list")
     fun getDishes(@Query("weather") weather:String):Call<List<FoodItem>>
     @GET("food/list/regionWise")
-    fun getLocationDishes(@Query("latitude") latitude:String,@Query("longitude") longitude:String): Call<List<FoodItem>>
+    fun getLocationDishes(@Query("latitude") latitude:String ,@Query("longitude") longitude:String ): Call<List<FoodItem>>
 }

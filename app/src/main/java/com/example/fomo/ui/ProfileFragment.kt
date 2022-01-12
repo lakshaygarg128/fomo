@@ -1,4 +1,4 @@
-package com.example.fomo
+package com.example.fomo.ui
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -7,18 +7,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fomo.R
 import com.example.fomo.databinding.FragmentProfileBinding
-import com.example.fomo.databinding.FragmentWeatherBinding
 import com.example.fomo.utils.Constants
-import com.example.fomo.utils.FoodAdapter
-import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -57,9 +50,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
         binding.orders.setOnClickListener{
-            if (activity!=null)
-            startActivity(Intent(activity as Context, CartActivity::class.java))
+            if(activity!=null)
+                startActivity(Intent(activity as Context, OrderActivity::class.java))
 
+        }
+        binding.favorites.setOnClickListener {
+            if (activity!=null)
+                startActivity(Intent(activity as Context, FavouritesActivity::class.java))
         }
     }
 

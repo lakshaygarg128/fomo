@@ -65,6 +65,7 @@ dependencies {
     def room_version = "2.4.0"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation 'androidx.room:room-ktx:2.4.0'
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

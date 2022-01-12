@@ -1,15 +1,14 @@
 package com.example.fomo
 
-import android.util.Log
-import android.widget.Toast
+import com.example.fomo.ui.LoginActivity
+import com.example.fomo.ui.SignupActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
 class FirebaseStore {
     private val mFirestore=FirebaseFirestore.getInstance()
-    fun registerUser(activity: SignupActivity,user: User)
+    fun registerUser(activity: SignupActivity, user: User)
     {
         mFirestore.collection("users").document(user.uId).set(user, SetOptions.merge()).addOnCompleteListener {task->
             if (task.isSuccessful)

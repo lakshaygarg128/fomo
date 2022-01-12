@@ -3,13 +3,11 @@ package com.example.fomo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import com.darwin.physioai.coreapp.utils.NetworkUtil
 import com.example.fomo.databinding.ActivityMainBinding
+import com.example.fomo.ui.LocationFragment
+import com.example.fomo.ui.ProfileFragment
+import com.example.fomo.ui.WeatherFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

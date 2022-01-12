@@ -1,28 +1,26 @@
-package com.example.fomo
+package com.example.fomo.ui
 
 import android.app.Activity
-import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationManager
-import android.location.LocationRequest
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fomo.Networking.FoodItem
 import com.example.fomo.Networking.retrofitInstance
+import com.example.fomo.R
+import com.example.fomo.database.FoodEntity
 import com.example.fomo.databinding.FragmentLocationBinding
-import com.example.fomo.databinding.FragmentWeatherBinding
 import com.example.fomo.utils.Constants
 import com.example.fomo.utils.FoodAdapter
 import com.example.fomo.utils.onRecipeClicked
@@ -35,9 +33,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.jar.Manifest
-
-
 
 
 class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
@@ -46,14 +41,16 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var binding : FragmentLocationBinding
     private lateinit var  adapter :FoodAdapter
-    lateinit var longitute : String
-    lateinit var latitude : String
+    var latitude : String = "28.6138954"
+     var longitute : String = "77.2090057"
     lateinit var sharedPreferences: SharedPreferences
+    lateinit var foodViewModel: FoodViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Inflate the layout for this fragment
         ActivityResultContracts.RequestPermission()
+        foodViewModel=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(FoodViewModel::class.java)
     }
     private fun CheckPermisssion(){
         val task : Task<Location> = fusedLocationProviderClient.lastLocation
@@ -63,8 +60,6 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
         ){
             task.addOnSuccessListener {
                 if(it!=null){
-                    //Toast.makeText(activity as Context,"${it.latitude} ${it.longitude}",Toast.LENGTH_SHORT).show()
-
                     latitude=it.latitude.toString()
                     longitute=it.longitude.toString()
                 }
@@ -81,12 +76,24 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
         ActivityResultContracts.RequestPermission()
         RequestPermission()
         CheckPermisssion()
-        GlobalScope.launch {
-            fetchFoodData()
-        }
+
+        fetchFoodData()
+
         binding.recylerViewfoodweather.layoutManager = LinearLayoutManager(activity as Context)
         adapter = FoodAdapter(this)
         binding.recylerViewfoodweather.adapter = adapter
+        foodViewModel.allFoodItem.observe(viewLifecycleOwner, Observer {list->
+            list.let {
+                val favList:ArrayList<FoodItem> = ArrayList()
+                for(element in it)
+                {
+                    favList.add(FoodItem(element.description,element.image,element.name,element.recipe))
+
+                }
+
+                adapter.addFavList(favList)
+            }
+        })
         if(activity!=null) {
             sharedPreferences =
                 activity?.getSharedPreferences(Constants.SHARED_PREFERENCE, Context.MODE_PRIVATE)!!
@@ -95,8 +102,8 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
         }
     }
 
-    suspend  fun fetchFoodData() {
-        delay(3000)
+     fun fetchFoodData() {
+
         val instance = retrofitInstance.api.getLocationDishes(latitude,longitute)
         instance.enqueue(object : Callback<List<FoodItem>> {
 
@@ -137,7 +144,16 @@ class LocationFragment : Fragment(R.layout.fragment_location), onRecipeClicked {
     }
 
     override fun onOrderClicked(item: FoodItem) {
+        val intent = Intent(requireContext(),OrderActivity::class.java)
+        startActivity(intent)
+    }
 
+    override fun insertFav(item: FoodEntity) {
+        foodViewModel.insertFood(item)
+    }
+
+    override fun deleteFav(item: FoodEntity) {
+        foodViewModel.deleteFood(item)
     }
 
 }

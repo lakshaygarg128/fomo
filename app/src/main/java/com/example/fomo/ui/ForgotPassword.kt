@@ -1,9 +1,11 @@
-package com.example.fomo
+package com.example.fomo.ui
 
 
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import com.example.fomo.BaseActivity
+import com.example.fomo.R
 import com.example.fomo.databinding.ActivityForgotPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 

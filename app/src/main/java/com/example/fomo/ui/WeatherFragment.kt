@@ -1,6 +1,7 @@
-package com.example.fomo
+package com.example.fomo.ui
 
 import android.app.Activity
+import android.app.Application
 
 import android.content.Context
 import android.content.Intent
@@ -12,23 +13,27 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fomo.Networking.FoodItem
 import com.example.fomo.Networking.Weather
 import com.example.fomo.Networking.retrofitInstance
+import com.example.fomo.R
+import com.example.fomo.database.FoodEntity
 import com.example.fomo.databinding.FragmentWeatherBinding
 import com.example.fomo.utils.Constants
 import com.example.fomo.utils.FoodAdapter
-import com.example.fomo.utils.SessionManager
+import com.example.fomo.utils.FoodViewHolder
 import com.example.fomo.utils.onRecipeClicked
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -43,13 +48,17 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
     private lateinit var  adapter :FoodAdapter
     private lateinit var binding : FragmentWeatherBinding
     private lateinit var sharedPreferences: SharedPreferences
+    lateinit var foodViewModel: FoodViewModel
 
-    lateinit var weatherres : String
+    //private val viewModel : FoodViewModel by viewModels<FoodViewModel>()
+
+     var weatherres : String = "cold"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity as Activity)
         ActivityResultContracts.RequestPermission()
+        foodViewModel=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(FoodViewModel::class.java)
 
     }
 
@@ -58,19 +67,28 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
         binding = FragmentWeatherBinding.bind(view)
         RequestPermission()
         CheckPermisssion()
+        Foodfetchdata()
 
-        GlobalScope.launch {
-
-            Foodfetchdata()
-        }
         binding.recylerViewFoodWeather.layoutManager = LinearLayoutManager(activity as Context)
         adapter = FoodAdapter(this)
         binding.recylerViewFoodWeather.adapter = adapter
+        foodViewModel.allFoodItem.observe(viewLifecycleOwner, Observer { list->
+            list.let {
+                val favList:ArrayList<FoodItem> =ArrayList()
+                for(element in it)
+                {
+                    favList.add(FoodItem(element.description,element.image,element.name,element.recipe))
+                }
+                Log.d("FavWeather",favList.toString())
+                adapter.addFavList(favList)
+
+            }
+        })
     }
 
-    private suspend fun Foodfetchdata() {
+    private  fun Foodfetchdata() {
         // API CALL
-        delay(4000)
+
         Log.d("weather","$weatherres")
         val instance = retrofitInstance.api.getDishes(weatherres)
         instance.enqueue(object : Callback<List<FoodItem>>{
@@ -79,11 +97,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
                 call: Call<List<FoodItem>>,
                 response: Response<List<FoodItem>>
             ) {
-//                Toast.makeText(
-//                    activity as Context,
-//                    "Food Api Passes",
-//                    Toast.LENGTH_SHORT
-//                ).show()
                 val FoodItems = response.body()
                 if (FoodItems != null) {
                     adapter.updatelist(FoodItems)
@@ -133,20 +146,28 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
         ){
             task.addOnSuccessListener {
                 if(it!=null){
-                    //Toast.makeText(activity as Context,"${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT).show()
-                    apicall(it.latitude,it.longitude)
+
+                    apicall(it.latitude.toString(),it.longitude.toString())
+
+                }else
+                {
+                    apicall()
                 }
             }
         }
+
         RequestPermission()
         return
     }
 
-    private fun apicall(latitude: Double, longitude: Double) {
-        val instance = retrofitInstance.api.getWeather(latitude.toString(),longitude.toString())
+
+
+    private fun apicall(latitude: String = "28.6138954", longitude: String="77.2090057") {
+        val instance = retrofitInstance.api.getWeather(latitude,longitude)
         instance.enqueue(object : Callback<Weather>{
             override fun onResponse(call: retrofit2.Call<Weather>, response: Response<Weather>) {
                val weather = response.body()
+
                 if(weather!=null){
                     binding.cityTv.text = "${weather.city}"
                     val temp="${weather.temperature}°C"
@@ -189,8 +210,74 @@ class WeatherFragment : Fragment(R.layout.fragment_weather), onRecipeClicked {
     }
 
     override fun onOrderClicked(item: FoodItem) {
-        TODO("Not yet implemented")
+        val intent = Intent(requireContext(), OrderActivity::class.java)
+        startActivity(intent)
     }
+
+    override fun insertFav(item: FoodEntity) {
+        foodViewModel.insertFood(item)
+    }
+
+    override fun deleteFav(item: FoodEntity) {
+        foodViewModel.deleteFood(item)
+    }
+
+//    private fun apicall(latitude: Double, longitude: Double) {
+//
+//        Log.d("LogLatitude", latitude.toString())
+//        Log.d("LogLongitude", longitude.toString())
+//        viewModel.apply {
+//            getWeather(latitude.toString(), longitude.toString())
+//            weatherres.observe(viewLifecycleOwner) {
+//                when (it) {
+//                    is Resource.Success -> {
+//                        progress.hideProgress()
+//                        if (!it.value.error) {
+//                            try {
+//                                visitItems.clear()
+//                                visitList.clear()
+//                                visitList.addAll(it.value.data)
+//                                for (i in visitList.indices) {
+//                                    visitItems.add(it.value.data[i])
+//                                }
+//                                setupVisitRecycler(visitItems)
+//                                binding.visitStatus.text = ""
+//                            } catch (e: NullPointerException) {
+//                                Toast.makeText(
+//                                    requireActivity(),
+//                                    "oops..! Something went wrong.",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+//                            }
+//                        } else if (it.value.error) {
+//                            if (flag == 0) {
+//                                flag++
+//                                Toast.makeText(
+//                                    requireContext(),
+//                                    it.value.message.toString(),
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+//                                binding.visitStatus.text = "No Visits Today!"
+//                            }
+//                            visitItems.clear()
+//                            setupVisitRecycler(visitItems)
+//                        }
+//                    }
+//                    is Resource.Failure -> {
+//                        progress.hideProgress()
+//                        Toast.makeText(requireContext(), "Failed.", Toast.LENGTH_SHORT).show()
+//                    }
+//                    is Resource.Loading -> {
+//                        if (progress.mDialog?.isShowing == true) {
+//                            progress.hideProgress()
+//                        } else {
+//                            progress.showProgress(requireContext())
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 
 }
